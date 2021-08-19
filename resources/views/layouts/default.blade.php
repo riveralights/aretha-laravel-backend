@@ -31,6 +31,7 @@
 
         <div class="clearfix"></div>
     </div>
+    @include('sweetalert::alert')
 
    {{-- script --}}
    @stack('before-script')
