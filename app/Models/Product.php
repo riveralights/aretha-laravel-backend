@@ -17,7 +17,7 @@ class Product extends Model
     protected $hidden = [];
 
     // satu produk punya banyak foto
-    // public function galleries() {
-    //     return $this->hasMany(ProductGallery::class);
-    // }
+    public function galleries() {
+        return $this->hasMany(ProductGallery::class);
+    }
 }
