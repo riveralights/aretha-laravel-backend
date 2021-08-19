@@ -64,9 +64,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('pages.products.edit', compact('product'));
     }
 
     /**
@@ -76,9 +76,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = Str::slug($request->title);
+
+        $product->update($data);
+        return redirect()->route('product.index')->with('success', 'Item Data Updated');
     }
 
     /**
