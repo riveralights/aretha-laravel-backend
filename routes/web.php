@@ -14,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 Auth::routes(['register' => false]);
 
+Route::resource('product', \App\Http\Controllers\ProductController::class);
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
