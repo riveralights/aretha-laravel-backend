@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductRequest;
-use App\Models\Product;
+use App\Models\ProductGallery;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-class ProductController extends Controller
+class ProductGalleryController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
-
 
     /**
      * Display a listing of the resource.
@@ -22,9 +19,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('pages.products.index', [
-            'products' => $products,
+        $product_galleries = ProductGallery::with('product')->get();
+        return view('pages.product-gallery.index', [
+            'product_galleries' => $product_galleries,
         ]);
     }
 
@@ -35,7 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('pages.products.create');
+        //
     }
 
     /**
@@ -44,13 +41,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-        $data['slug'] = Str::slug($request->title);
-
-        Product::create($data);
-        return redirect()->route('product.index')->with('success', 'Item Created Successfully!');
+        //
     }
 
     /**
@@ -70,9 +63,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        return view('pages.products.edit', compact('product'));
+        //
     }
 
     /**
@@ -82,13 +75,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $data = $request->validated();
-        $data['slug'] = Str::slug($request->title);
-
-        $product->update($data);
-        return redirect()->route('product.index')->with('success', 'Item Data Updated');
+        //
     }
 
     /**
@@ -97,9 +86,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        $product->delete();
-        return redirect()->route('product.index')->with('success', 'Item Deleted Successfully');
+        //
     }
 }
