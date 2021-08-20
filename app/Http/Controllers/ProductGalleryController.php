@@ -6,6 +6,7 @@ use App\Http\Requests\ProductGalleryRequest;
 use App\Models\Product;
 use App\Models\ProductGallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductGalleryController extends Controller
 {
@@ -96,9 +97,10 @@ class ProductGalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductGallery $productGallery)
+    public function destroy($id)
     {
-        $productGallery->delete();
+        $item = ProductGallery::findOrFail($id);
+        $item->delete();
         return redirect()->route('product-gallery.index')->with('success', 'Item Deleted Successfully');
     }
 }
