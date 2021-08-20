@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductGalleryRequest;
+use App\Models\Product;
 use App\Models\ProductGallery;
 use Illuminate\Http\Request;
 
@@ -32,7 +34,9 @@ class ProductGalleryController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.product-gallery.create', [
+            'products' => Product::get(),
+        ]);
     }
 
     /**
@@ -41,9 +45,15 @@ class ProductGalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductGalleryRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['photo'] = $request->file('photo')->store(
+            'assets/products', 'public'
+        );
+
+        ProductGallery::create($data);
+        return redirect()->route('product-gallery.index')->with('success', 'Item Created Successfully!');
     }
 
     /**

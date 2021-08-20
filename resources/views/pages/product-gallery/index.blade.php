@@ -26,7 +26,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $gallery->product->name }}</td>
                                         <td>
-                                            <img src="{{ url($item->photo) }}" alt="" />
+                                            <img src="{{ url($gallery->photo) }}" alt="" />
                                         </td>
                                         <td>{{ $gallery->is_default ? 'Yes' : 'No' }}</td>
                                         <td>
