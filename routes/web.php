@@ -18,6 +18,7 @@ Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->na
 
 Auth::routes(['register' => false]);
 
+Route::get('/product/{id}/gallery', [\App\Http\Controllers\ProductController::class, 'gallery'])->name('product.gallery');
 Route::resource('product', \App\Http\Controllers\ProductController::class);
 Route::resource('product-gallery', \App\Http\Controllers\ProductGalleryController::class);
 
