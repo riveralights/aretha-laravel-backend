@@ -66,7 +66,8 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+        return view('pages.transactions.edit', compact('transaction'));
     }
 
     /**
@@ -78,7 +79,11 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $transaction = Transaction::findOrFail($id);
+        $transaction->update($data);
+
+        return redirect()->route('transaction.index');
     }
 
     /**
