@@ -43,9 +43,12 @@
                                                 
                                         </td>
                                         <td>
-                                            <a href="#transactionModal" data-remote="{{ route('transaction.show', $transaction) }}" data-toggle="modal" data-target="#transactionModal" data-title="Transaction Detail {{ $transaction->uuid }}" class="btn btn-info btn-sm">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
+                                            {{-- @if ($transaction->transaction_status == 'PENDING')
+                                                <a href="{{ route('transaction.status', $transaction) }}?status=SUCCESS" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
+                                                <a href="{{ route('transaction.status', $transaction) }}?status=FAILED" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
+                                            @endif --}}
+                                            <a href="" data-target="#myModal" data-toggle="modal" data-title="Transaction - {{ $transaction->uuid }}" data-remote="{{ route('transaction.show', $transaction->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+
                                             <a href="{{ route('transaction.edit', $transaction) }}" class="btn btn-primary btn-sm">
                                                 <i class="fa fa-pencil"></i>
                                             </a>

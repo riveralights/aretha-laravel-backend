@@ -52,7 +52,10 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        // mengambil data transaksi yang didalamnya ada relasi details dan details punya relasi product
+        // diangkut semua :D 
+        $transaction = Transaction::with('details.product')->findOrFail($id);
+        return view('pages.transactions.show', compact('transaction'));
     }
 
     /**
