@@ -5,10 +5,10 @@ namespace App\Http\Controllers\API;
 
 class ResponseFormatter
 {
-    protected static $reponse = [
+    protected static $response = [
         'meta' => [
-            'code' => 200,
-            'status' => 'success',
+            'code'    => 200,
+            'status'  => 'success',
             'message' => null,
         ],
         'data' => null,

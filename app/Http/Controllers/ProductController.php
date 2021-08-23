@@ -48,7 +48,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->validated();
-        $data['slug'] = Str::slug($request->title);
+        $data['slug'] = Str::slug($request->name);
 
         Product::create($data);
         return redirect()->route('product.index')->with('success', 'Item Created Successfully!');
