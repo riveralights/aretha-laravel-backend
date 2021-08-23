@@ -21,5 +21,6 @@ Auth::routes(['register' => false]);
 Route::get('/product/{id}/gallery', [\App\Http\Controllers\ProductController::class, 'gallery'])->name('product.gallery');
 Route::resource('product', \App\Http\Controllers\ProductController::class);
 Route::resource('product-gallery', \App\Http\Controllers\ProductGalleryController::class);
+Route::get('/transaction/{id}/set-status', [\App\Http\Controllers\TransactionController::class, 'setStatus'])->name('transaction.status');
 Route::resource('transaction', \App\Http\Controllers\TransactionController::class);
 
