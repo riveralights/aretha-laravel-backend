@@ -83,7 +83,7 @@ class TransactionController extends Controller
         $transaction = Transaction::findOrFail($id);
         $transaction->update($data);
 
-        return redirect()->route('transaction.index');
+        return redirect()->route('transaction.index')->with('success', 'Item has been updated!');;
     }
 
     /**
@@ -94,7 +94,10 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Transaction::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('transaction.index')->with('success', 'Item has been deleted');;
     }
 
     public function setStatus(Request $request, $id) 
@@ -107,6 +110,6 @@ class TransactionController extends Controller
         $item->transaction_status = $request->status;
         $item->save();
 
-        return redirect()->route('transaction.index');
+        return redirect()->route('transaction.index')->with('success', 'Change status success');;
     }
 }
